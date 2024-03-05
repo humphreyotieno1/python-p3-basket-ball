@@ -182,3 +182,64 @@ def game_dict():
             ]
         }
     }
+    
+def num_points_per_game(player_name):
+    for team in game_dict().values():
+        for player in team['players']:
+            if player['name'] == player_name:
+                return player['points_per_game']
+    return None
+
+
+def player_age(player_name):
+    for team in game_dict().values():
+        for player in team['players']:
+            if player['name'] == player_name:
+                return player['age']
+    return None
+
+
+def team_colors(team_name):
+    for team in game_dict().values():
+        if team['team_name'] == team_name:
+            return team['colors']
+    return None
+
+
+def team_names():
+    return [team['team_name'] for team in game_dict().values()]
+
+
+def player_numbers(team_name):
+    for team in game_dict().values():
+        if team['team_name'] == team_name:
+            return [player['number'] for player in team['players']]
+    return None
+
+
+def player_stats(player_name):
+    for team in game_dict().values():
+        for player in team['players']:
+            if player['name'] == player_name:
+                return {
+                    "name": player['name'],
+                    "number": player['number'],
+                    "position": player['position'],
+                    "points_per_game": player['points_per_game'],
+                    "rebounds_per_game": player['rebounds_per_game'],
+                    "assists_per_game": player['assists_per_game'],
+                    "steals_per_game": player['steals_per_game'],
+                    "blocks_per_game": player['blocks_per_game'],
+                    "career_points": player['career_points'],
+                    "age": player['age'],
+                    "height_inches": player['height_inches'],
+                    "shoe_brand": player['shoe_brand'],
+                }
+    return None
+
+print(num_points_per_game("Darius Garland"))
+print(player_age("Darius Garland"))
+print(team_colors("Cleveland Cavaliers"))
+print(team_names())
+print(player_numbers("Cleveland Cavaliers"))
+print(player_stats("Darius Garland"))
